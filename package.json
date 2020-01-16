@@ -1,0 +1,30 @@
+{
+  "name": "mini-vue",
+  "version": "1.0.0",
+  "description": "mini vue.js",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx webpack-dev-server --config ./build/webpack.dev.js",
+    "build": "npx webpack --config ./build/webpack.dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iNuanfeng/mini-vue.git"
+  },
+  "keywords": [
+    "vue.js"
+  ],
+  "author": "iNuanfeng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iNuanfeng/mini-vue/issues"
+  },
+  "homepage": "https://github.com/iNuanfeng/mini-vue#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}
