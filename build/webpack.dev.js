@@ -5,7 +5,7 @@ const fileName = 'index'
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, '../src/index.js')
+    app: path.resolve(__dirname, '../examples/index.js')
   },
   devtool: "inline-source-map",
   devServer: {
