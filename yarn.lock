@@ -3412,6 +3412,11 @@ signal-exit@^3.0.0:
   resolved "http://r.cnpmjs.org/signal-exit/download/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
+snabbdom@^0.7.4:
+  version "0.7.4"
+  resolved "http://r.cnpmjs.org/snabbdom/download/snabbdom-0.7.4.tgz#817f07e8d3fb870960c3763b8da56f1ba982d31a"
+  integrity sha1-gX8H6NP7hwlgw3Y7jaVvG6mC0xo=
+
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "http://r.cnpmjs.org/snapdragon-node/download/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"

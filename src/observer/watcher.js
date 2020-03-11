@@ -11,7 +11,7 @@ class Watcher {
   /* 更新视图的方法 */
   update() {
     console.log("视图更新啦～");
-    this._vm.renderHTML()
+    this._vm.update()
   }
 }
 

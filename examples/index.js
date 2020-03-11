@@ -5,13 +5,15 @@ let vm = new Vue({
     title: "I am vue.",
     des: "I am description."
   },
-  render: function () {
-    const html = `
-      <p>${this._data.title}</p>
-      <span>${this._data.des}</span>
-    `
-
-    return html
+  render: function (h) {
+    return h('div', [
+      h('p', {
+        style: {
+          fontWeight: 'bold'
+        }
+      }, this._data.title),
+      h('span', this._data.des)
+    ])
   }
 });
 
