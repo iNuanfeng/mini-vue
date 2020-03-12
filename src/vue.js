@@ -1,5 +1,4 @@
-import observer from './observer'
-import Watcher from './observer/watcher'
+import bindProxy from './proxy'
 
 var snabbdom = require('snabbdom');
 var patch = snabbdom.init([ // Init patch function with chosen modules
@@ -12,17 +11,15 @@ var h = require('snabbdom/h').default; // helper function for creating vnodes
 
 class Vue {
   constructor(options) {
-    this._data = options.data;
+    this.data = options.data
     this.render = options.render;
     this.selector = null,
     this.oldVNode = null
-
-    observer(this._data);
   }
 
   $mount(selector) {
     /* 新建一个Watcher观察者对象，这时候Dep.target会指向这个Watcher对象 */
-    new Watcher(this)
+    this._data = bindProxy(this.data, this)
 
     this.selector = selector
     this.oldVNode = document.querySelector(this.selector)

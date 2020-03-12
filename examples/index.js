@@ -20,5 +20,5 @@ let vm = new Vue({
 vm.$mount('#app')
 
 setTimeout(() => {
-  vm._data.des = "hello,world."; /* 视图更新啦～ */
+  vm._data.des = "hello,world." /* 视图更新啦～ */
 }, 1000)
