@@ -1,13 +1,5 @@
 import bindProxy from './proxy'
-
-var snabbdom = require('snabbdom');
-var patch = snabbdom.init([ // Init patch function with chosen modules
-  require('snabbdom/modules/class').default, // makes it easy to toggle classes
-  require('snabbdom/modules/props').default, // for setting properties on DOM elements
-  require('snabbdom/modules/style').default, // handles styling on elements with support for animations
-  require('snabbdom/modules/eventlisteners').default, // attaches event listeners
-]);
-var h = require('snabbdom/h').default; // helper function for creating vnodes
+import { h } from './vdom'
 
 class Vue {
   constructor(options) {
@@ -29,10 +21,11 @@ class Vue {
 
   update() {
     const newVNode = this.render(h)
+    console.log(newVNode)
 
-    patch(this.oldVNode, newVNode)
+    // patch(this.oldVNode, newVNode)
 
-    this.oldVNode = newVNode
+    // this.oldVNode = newVNode
   }
 }
 

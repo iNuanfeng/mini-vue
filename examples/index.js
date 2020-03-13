@@ -6,14 +6,21 @@ let vm = new Vue({
     des: "I am description."
   },
   render: function (h) {
-    return h('div', [
-      h('p', {
-        style: {
-          fontWeight: 'bold'
-        }
-      }, this._data.title),
-      h('span', this._data.des)
-    ])
+    return h(
+      'span', {
+        /* 指令集合数组 */
+        directives: [{
+          /* v-show指令 */
+          rawName: 'v-show',
+          expression: 'isShow',
+          name: 'show',
+          value: true
+        }],
+        /* 静态class */
+        staticClass: 'demo'
+      },
+      [h(undefined, undefined, undefined, 'This is a span.')]
+    )
   }
 });
 
