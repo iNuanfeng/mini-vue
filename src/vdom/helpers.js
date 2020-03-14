@@ -27,9 +27,9 @@ function createElm(vnode, parentElm, refElm) {
 function addVnodes(parentElm, refElm, vnodes, startIdx, endIdx) {
   for (; startIdx <= endIdx; ++startIdx) {
     const newParentElm = createElm(vnodes[startIdx], parentElm, refElm);
-    // console.log('++', vnodes[startIdx])
+
+    // VNode 的 elm 属性上保持对应的 DOM 对象
     vnodes[startIdx].elm = newParentElm
-    // console.log('++2', vnodes[startIdx])
 
     if (vnodes[startIdx].children) {
       // 创建子节点

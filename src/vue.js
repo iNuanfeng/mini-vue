@@ -1,6 +1,8 @@
 import bindProxy from './proxy'
 import { h, patch } from './vdom'
+import { deepClone } from './libs/utils'
 
+let count = 0
 class Vue {
   constructor(options) {
     this.data = options.data
@@ -20,12 +22,17 @@ class Vue {
   }
 
   update() {
+    console.log(count, 'before', this.oldVNode)
+
     const renderNode = this.render(h)
     const newVNode = renderNode ? [renderNode] : null
 
     patch(this.oldVNode, newVNode, document.querySelector(this.selector))
+    console.log(count, 'new', newVNode)
 
-    this.oldVNode = newVNode
+    this.oldVNode = deepClone(newVNode)
+    console.log(count++, 'after', this.oldVNode)
+
   }
 }
 

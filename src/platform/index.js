@@ -2,11 +2,11 @@ const nodeOps = {
   setTextContent(text) {
     console.log(text)
   },
-  parentNode() {
-    //......
+  parentNode(elm) {
+    return elm.parentNode
   },
-  removeChild() {
-    //......
+  removeChild(parent, elm) {
+    parent.removeChild(elm)
   },
   nextSibling() {
     //......
