@@ -23,8 +23,8 @@ function createElm(vnode, parentElm, refElm) {
   }
 }
 
-// addVnodes 用来批量调用 createElm 新建节点。
-function addVnodes(parentElm, refElm, vnodes, startIdx, endIdx) {
+// addVNodes 用来批量调用 createElm 新建节点。
+function addVNodes(parentElm, refElm, vnodes, startIdx, endIdx) {
   for (; startIdx <= endIdx; ++startIdx) {
     const newParentElm = createElm(vnodes[startIdx], parentElm, refElm);
 
@@ -33,7 +33,7 @@ function addVnodes(parentElm, refElm, vnodes, startIdx, endIdx) {
 
     if (vnodes[startIdx].children) {
       // 创建子节点
-      addVnodes(newParentElm, null, vnodes[startIdx].children, 0, vnodes[startIdx].children.length -1)
+      addVNodes(newParentElm, null, vnodes[startIdx].children, 0, vnodes[startIdx].children.length -1)
     }
   }
 }
@@ -46,8 +46,8 @@ function removeNode(el) {
   }
 }
 
-// removeVnodes 会批量调用 removeNode 移除节点。
-function removeVnodes(parentElm, vnodes, startIdx, endIdx) {
+// removeVNodes 会批量调用 removeNode 移除节点。
+function removeVNodes(parentElm, vnodes, startIdx, endIdx) {
   for (; startIdx <= endIdx; ++startIdx) {
     const ch = vnodes[startIdx]
     if (ch) {
@@ -56,10 +56,16 @@ function removeVnodes(parentElm, vnodes, startIdx, endIdx) {
   }
 }
 
+// 判断是否与之前是同一个 DOM 节点
+function sameVNode() {
+  return false
+}
+
 export {
   insert,
   createElm,
-  addVnodes,
+  addVNodes,
   removeNode,
-  removeVnodes
+  removeVNodes,
+  sameVNode
 }

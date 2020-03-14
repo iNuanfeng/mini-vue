@@ -36,12 +36,12 @@ export function createTextVNode(val) {
  * @param {Object} node VNode节点
  */
 export function cloneVNode(node) {
-  const cloneVnode = new VNode(
+  const cloneVNode = new VNode(
     node.tag,
     node.data,
     node.children,
     node.text,
     node.elm
   );
-  return cloneVnode;
+  return cloneVNode;
 }
