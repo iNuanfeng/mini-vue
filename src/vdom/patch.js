@@ -14,9 +14,9 @@ function patch(oldVnode, vnode, parentElm) {
   } else if (!vnode) {
     removeVnodes(parentElm, oldVnode, 0, oldVnode.length - 1);
   } else {
-    if (sameVnode(oldVnode, vnode)) {
+    if (sameVnode(oldVnode[0], vnode[0])) {
       // diff + 更新DOM
-      patchVnode(oldVnode, vnode);
+      patchVnode(oldVnode[0], vnode[0]);
     } else {
       removeVnodes(parentElm, oldVnode, 0, oldVnode.length - 1);
       addVnodes(parentElm, null, vnode, 0, vnode.length - 1);
