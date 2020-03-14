@@ -8,9 +8,11 @@ const nodeOps = {
   removeChild(parent, elm) {
     parent.removeChild(elm)
   },
+  // TODO
   nextSibling() {
     //......
   },
+  // TODO
   insertBefore() {
     //......
   },

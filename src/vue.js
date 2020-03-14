@@ -1,14 +1,16 @@
-import bindProxy from './proxy'
+import bindProxy from './proxy/index'
 import { h, patch } from './vdom'
-import { deepClone } from './libs/utils'
+import { deepClone } from './utils'
+import { queueWatcher } from './proxy/scheduler'
 
-let count = 0
+let uid = 0;
 class Vue {
   constructor(options) {
     this.data = options.data
     this.render = options.render;
-    this.selector = null,
-    this.oldVnode = null
+    this.selector = null;
+    this.oldVnode = null;
+    this.id = ++uid;
   }
 
   $mount(selector) {
@@ -22,13 +24,16 @@ class Vue {
   }
 
   update() {
+    queueWatcher(this)
+  }
+
+  run () {
     const renderNode = this.render(h)
     const newVnode = renderNode ? [renderNode] : null
 
     patch(this.oldVnode, newVnode, document.querySelector(this.selector))
 
     this.oldVnode = deepClone(newVnode)
-
   }
 }
 

@@ -7,6 +7,7 @@ let vm = new Vue({
     visible: true
   },
   render: function (h) {
+    console.log('render')
     if (this._data.visible) {
       return h(
         'div', {
@@ -43,8 +44,8 @@ setTimeout(() => {
 }, 500)
 
 
-setTimeout(() => {
-  vm._data.langs.push('python')
-  // vm._data.visible = false
-}, 1000)
+// setTimeout(() => {
+//   vm._data.langs.push('python')
+//   // vm._data.visible = false
+// }, 1000)
 
