@@ -17,7 +17,13 @@ function insert(parent, elm, ref) {
 // createElm 用来新建一个节点， tag 存在创建一个标签节点，否则创建一个文本节点。
 function createElm(vnode, parentElm, refElm) {
   if (vnode.tag) {
-    return insert(parentElm, nodeOps.createElement(vnode.tag), refElm);
+    const elm = insert(parentElm, nodeOps.createElement(vnode.tag), refElm);
+
+    if (vnode.text) {
+      nodeOps.setTextContent(elm, vnode.text);
+    }
+
+    return elm
   } else {
     return insert(parentElm, nodeOps.createTextNode(vnode.text), refElm);
   }
@@ -77,8 +83,6 @@ function sameInputType(a, b) {
 
 // 同节点，diff + 更新DOM
 function patchVnode(oldVnode, vnode) {
-  console.log('patchVnode', oldVnode, vnode)
-  return
   // TODO
   if (oldVnode === vnode) {
     return;
@@ -86,7 +90,7 @@ function patchVnode(oldVnode, vnode) {
 
   if (vnode.isStatic && oldVnode.isStatic && vnode.key === oldVnode.key) {
     vnode.elm = oldVnode.elm;
-    vnode.componentInstance = oldVnode.componentInstance;
+    // vnode.componentInstance = oldVnode.componentInstance;
     return;
   }
 
@@ -95,6 +99,7 @@ function patchVnode(oldVnode, vnode) {
   const ch = vnode.children;
 
   if (vnode.text) {
+    console.log(11)
     nodeOps.setTextContent(elm, vnode.text);
   } else {
     if (oldCh && ch && (oldCh !== ch)) {

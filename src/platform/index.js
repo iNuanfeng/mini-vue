@@ -1,6 +1,6 @@
 const nodeOps = {
-  setTextContent(text) {
-    console.log(text)
+  setTextContent(elm, text) {
+    elm.textContent = text
   },
   parentNode(elm) {
     return elm.parentNode

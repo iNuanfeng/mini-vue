@@ -10,6 +10,8 @@ export class Vnode {
     this.text = text;
     /*当前虚拟节点对应的真实dom节点*/
     this.elm = elm;
+    /* 静态节点 */
+    this.isStatic = false
   }
 }
 

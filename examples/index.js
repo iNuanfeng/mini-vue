@@ -22,13 +22,9 @@ let vm = new Vue({
           staticClass: 'demo'
         },
         [
-          h('p', {}, [
-            h(undefined, undefined, undefined, this._data.title)
-          ]),
+          h('p', {}, [], this._data.title),
           ...this._data.langs.map(item => 
-            h('li', {}, [
-              h(undefined, undefined, undefined, item)
-            ])
+            h('li', {}, [], item)
           )
         ]
       )
@@ -42,7 +38,7 @@ let vm = new Vue({
 vm.$mount('#app')
 
 setTimeout(() => {
-  vm._data.title = 'hello,world.'
+  // vm._data.title = 'hello,world.'
   // vm._data.langs = ['js', 'html', 'css', 'java']
 }, 500)
 
