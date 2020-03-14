@@ -10,7 +10,7 @@ function bindProxy(target, vm) {
     },
     set (target, key, value, receiver) {
       console.log('set ' + key + ': ', value)
-      return Reflect.set(target, key, value, receiver)
+      Reflect.set(target, key, value, receiver)
 
       vm.update()
       return true

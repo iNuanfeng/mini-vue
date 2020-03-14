@@ -1,9 +1,8 @@
 import { VNode } from './VNode'
+import patch from './patch.js'
 
-export function h(...args) {
+function h(...args) {
   return new VNode(...args)
 }
 
-export function patch(oldVNode, newVNode) {
-  console.log('todo patch')
-}
+export { h, patch }

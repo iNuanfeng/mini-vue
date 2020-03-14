@@ -5,10 +5,11 @@ function insert(parent, elm, ref) {
   if (parent) {
     if (ref) {
       if (ref.parentNode === parent) {
-        nodeOps.insertBefore(parent, elm, ref);
+        // TODO
+        return nodeOps.insertBefore(parent, elm, ref);
       }
     } else {
-      nodeOps.appendChild(parent, elm)
+      return nodeOps.appendChild(parent, elm)
     }
   }
 }
@@ -16,16 +17,24 @@ function insert(parent, elm, ref) {
 // createElm 用来新建一个节点， tag 存在创建一个标签节点，否则创建一个文本节点。
 function createElm(vnode, parentElm, refElm) {
   if (vnode.tag) {
-    insert(parentElm, nodeOps.createElement(vnode.tag), refElm);
+    return insert(parentElm, nodeOps.createElement(vnode.tag), refElm);
   } else {
-    insert(parentElm, nodeOps.createTextNode(vnode.text), refElm);
+    return insert(parentElm, nodeOps.createTextNode(vnode.text), refElm);
   }
 }
 
 // addVnodes 用来批量调用 createElm 新建节点。
 function addVnodes(parentElm, refElm, vnodes, startIdx, endIdx) {
   for (; startIdx <= endIdx; ++startIdx) {
-    createElm(vnodes[startIdx], parentElm, refElm);
+    const newParentElm = createElm(vnodes[startIdx], parentElm, refElm);
+    // console.log('++', vnodes[startIdx])
+    vnodes[startIdx].elm = newParentElm
+    // console.log('++2', vnodes[startIdx])
+
+    if (vnodes[startIdx].children) {
+      // 创建子节点
+      addVnodes(newParentElm, null, vnodes[startIdx].children, 0, vnodes[startIdx].children.length -1)
+    }
   }
 }
 
@@ -45,4 +54,12 @@ function removeVnodes(parentElm, vnodes, startIdx, endIdx) {
       removeNode(ch.elm);
     }
   }
+}
+
+export {
+  insert,
+  createElm,
+  addVnodes,
+  removeNode,
+  removeVnodes
 }

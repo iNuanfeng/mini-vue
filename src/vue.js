@@ -14,16 +14,16 @@ class Vue {
     this._data = bindProxy(this.data, this)
 
     this.selector = selector
-    this.oldVNode = document.querySelector(this.selector)
+    this.oldVNode = null
 
     this.update()
   }
 
   update() {
-    const newVNode = this.render(h)
-    console.log(newVNode)
+    const renderNode = this.render(h)
+    const newVNode = renderNode ? [renderNode] : null
 
-    patch(this.oldVNode, newVNode)
+    patch(this.oldVNode, newVNode, document.querySelector(this.selector))
 
     this.oldVNode = newVNode
   }
