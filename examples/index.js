@@ -42,13 +42,13 @@ let vm = new Vue({
 vm.$mount('#app')
 
 setTimeout(() => {
-  // vm._data.title = 'hello,world.'
+  vm._data.title = 'hello,world.'
   // vm._data.langs = ['js', 'html', 'css', 'java']
 }, 500)
 
 
-setTimeout(() => {
-  // vm._data.langs = ['js', 'html', 'css', 'java']
-  vm._data.visible = false
-}, 1000)
+// setTimeout(() => {
+//   // vm._data.langs = ['js', 'html', 'css', 'java']
+//   vm._data.visible = false
+// }, 1000)
 

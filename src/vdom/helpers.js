@@ -33,7 +33,7 @@ function addVnodes(parentElm, refElm, vnodes, startIdx, endIdx) {
 
     if (vnodes[startIdx].children) {
       // 创建子节点
-      addVnodes(newParentElm, null, vnodes[startIdx].children, 0, vnodes[startIdx].children.length -1)
+      addVnodes(newParentElm, null, vnodes[startIdx].children, 0, vnodes[startIdx].children.length - 1)
     }
   }
 }
@@ -57,17 +57,17 @@ function removeVnodes(parentElm, vnodes, startIdx, endIdx) {
 }
 
 // 判断是否与之前是同一个 DOM 节点
-function sameVnode () {
+function sameVnode(a, b) {
   return (
-      a.key === b.key &&
-      a.tag === b.tag &&
-      a.isComment === b.isComment &&
-      (!!a.data) === (!!b.data) &&
-      sameInputType(a, b)
+    a.key === b.key &&
+    a.tag === b.tag &&
+    a.isComment === b.isComment &&
+    (!!a.data) === (!!b.data) &&
+    sameInputType(a, b)
   )
 }
 
-function sameInputType (a, b) {
+function sameInputType(a, b) {
   if (a.tag !== 'input') return true
   let i
   const typeA = (i = a.data) && (i = i.attrs) && i.type
@@ -77,7 +77,37 @@ function sameInputType (a, b) {
 
 // 同节点，diff + 更新DOM
 function patchVnode(oldVnode, vnode) {
-  console.log('patchVnode')
+  console.log('patchVnode', oldVnode, vnode)
+  return
+  // TODO
+  if (oldVnode === vnode) {
+    return;
+  }
+
+  if (vnode.isStatic && oldVnode.isStatic && vnode.key === oldVnode.key) {
+    vnode.elm = oldVnode.elm;
+    vnode.componentInstance = oldVnode.componentInstance;
+    return;
+  }
+
+  const elm = vnode.elm = oldVnode.elm;
+  const oldCh = oldVnode.children;
+  const ch = vnode.children;
+
+  if (vnode.text) {
+    nodeOps.setTextContent(elm, vnode.text);
+  } else {
+    if (oldCh && ch && (oldCh !== ch)) {
+      updateChildren(elm, oldCh, ch);
+    } else if (ch) {
+      if (oldVnode.text) nodeOps.setTextContent(elm, '');
+      addVnodes(elm, null, ch, 0, ch.length - 1);
+    } else if (oldCh) {
+      removeVnodes(elm, oldCh, 0, oldCh.length - 1)
+    } else if (oldVnode.text) {
+      nodeOps.setTextContent(elm, '')
+    }
+  }
 }
 
 export {

@@ -22,16 +22,12 @@ class Vue {
   }
 
   update() {
-    console.log(count, 'before', this.oldVnode)
-
     const renderNode = this.render(h)
     const newVnode = renderNode ? [renderNode] : null
 
     patch(this.oldVnode, newVnode, document.querySelector(this.selector))
-    console.log(count, 'new', newVnode)
 
     this.oldVnode = deepClone(newVnode)
-    console.log(count++, 'after', this.oldVnode)
 
   }
 }
