@@ -3,7 +3,7 @@ import Vue from '../src/vue'
 let vm = new Vue({
   data: {
     title: "I am vue.",
-    des: "I am description."
+    langs: ['js', 'css', 'html']
   },
   render: function (h) {
     return h(
@@ -19,7 +19,10 @@ let vm = new Vue({
         /* 静态class */
         staticClass: 'demo'
       },
-      [h(undefined, undefined, undefined, 'This is a span.')]
+      [
+        h(undefined, undefined, undefined, this._data.title),
+        ...this._data.langs.map(item => h(undefined, undefined, undefined, item))
+      ]
     )
   }
 });
@@ -27,5 +30,6 @@ let vm = new Vue({
 vm.$mount('#app')
 
 setTimeout(() => {
-  vm._data.des = "hello,world." /* 视图更新啦～ */
+  vm._data.title = 'hello,world.'
+  vm._data.langs = ['js', 'html', 'css', 'java']
 }, 1000)

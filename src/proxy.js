@@ -1,19 +1,24 @@
 function bindProxy(target, vm) {
-  console.log(vm)
-  return new Proxy(target, {
-    get(target, propKey, receiver) {
-      console.log('你访问了' + propKey)
-      return Reflect.get(target, propKey, receiver)
+  let handler = {
+    get (target, key, receiver) {
+      // console.log('get' + key)
+      // 递归创建并返回
+      if (typeof target[key] === 'object' && target[key] !== null) {
+        return new Proxy(target[key], handler)
+      }
+      return Reflect.get(target, key, receiver)
     },
-    set(target, propKey, value, receiver) {
-      console.log('你设置了' + propKey)
-      console.log('新的' + propKey + '=' + value)
-      Reflect.set(target, propKey, value, receiver)
-      
+    set (target, key, value, receiver) {
+      console.log('set ' + key + ': ', value)
+      return Reflect.set(target, key, value, receiver)
+
       vm.update()
       return true
     }
-  })
+  }
+
+  return new Proxy(target, handler)
 }
+
 
 export default bindProxy

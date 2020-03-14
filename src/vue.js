@@ -1,5 +1,5 @@
 import bindProxy from './proxy'
-import { h } from './vdom'
+import { h, patch } from './vdom'
 
 class Vue {
   constructor(options) {
@@ -23,9 +23,9 @@ class Vue {
     const newVNode = this.render(h)
     console.log(newVNode)
 
-    // patch(this.oldVNode, newVNode)
+    patch(this.oldVNode, newVNode)
 
-    // this.oldVNode = newVNode
+    this.oldVNode = newVNode
   }
 }
 
