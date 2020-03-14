@@ -1,4 +1,4 @@
-export class VNode {
+export class Vnode {
   constructor(tag, data, children, text, elm) {
     /*当前节点的标签名*/
     this.tag = tag;
@@ -17,8 +17,8 @@ export class VNode {
 /**
  * 创建一个空节点
  */
-export function createEmptyVNode() {
-  const node = new VNode();
+export function createEmptyVnode() {
+  const node = new Vnode();
   node.text = '';
   return node;
 }
@@ -27,21 +27,21 @@ export function createEmptyVNode() {
  * 创建一个文本节点
  * @param {String} val 文本内容
  */
-export function createTextVNode(val) {
-  return new VNode(undefined, undefined, undefined, String(val));
+export function createTextVnode(val) {
+  return new Vnode(undefined, undefined, undefined, String(val));
 }
 
 /**
- * 克隆一个 VNode 节点
- * @param {Object} node VNode节点
+ * 克隆一个 Vnode 节点
+ * @param {Object} node Vnode节点
  */
-export function cloneVNode(node) {
-  const cloneVNode = new VNode(
+export function cloneVnode(node) {
+  const cloneVnode = new Vnode(
     node.tag,
     node.data,
     node.children,
     node.text,
     node.elm
   );
-  return cloneVNode;
+  return cloneVnode;
 }

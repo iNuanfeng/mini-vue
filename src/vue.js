@@ -8,7 +8,7 @@ class Vue {
     this.data = options.data
     this.render = options.render;
     this.selector = null,
-    this.oldVNode = null
+    this.oldVnode = null
   }
 
   $mount(selector) {
@@ -16,22 +16,22 @@ class Vue {
     this._data = bindProxy(this.data, this)
 
     this.selector = selector
-    this.oldVNode = null
+    this.oldVnode = null
 
     this.update()
   }
 
   update() {
-    console.log(count, 'before', this.oldVNode)
+    console.log(count, 'before', this.oldVnode)
 
     const renderNode = this.render(h)
-    const newVNode = renderNode ? [renderNode] : null
+    const newVnode = renderNode ? [renderNode] : null
 
-    patch(this.oldVNode, newVNode, document.querySelector(this.selector))
-    console.log(count, 'new', newVNode)
+    patch(this.oldVnode, newVnode, document.querySelector(this.selector))
+    console.log(count, 'new', newVnode)
 
-    this.oldVNode = deepClone(newVNode)
-    console.log(count++, 'after', this.oldVNode)
+    this.oldVnode = deepClone(newVnode)
+    console.log(count++, 'after', this.oldVnode)
 
   }
 }

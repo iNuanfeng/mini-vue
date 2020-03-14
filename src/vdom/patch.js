@@ -1,24 +1,25 @@
 import {
   insert,
   createElm,
-  addVNodes,
+  addVnodes,
   removeNode,
-  removeVNodes,
-  sameVNode
+  removeVnodes,
+  sameVnode,
+  patchVnode
 } from './helpers'
 
-function patch(oldVNode, vnode, parentElm) {
-  if (!oldVNode) {
-    addVNodes(parentElm, null, vnode, 0, vnode.length - 1);
+function patch(oldVnode, vnode, parentElm) {
+  if (!oldVnode) {
+    addVnodes(parentElm, null, vnode, 0, vnode.length - 1);
   } else if (!vnode) {
-    removeVNodes(parentElm, oldVNode, 0, oldVNode.length - 1);
+    removeVnodes(parentElm, oldVnode, 0, oldVnode.length - 1);
   } else {
-    if (sameVNode(oldVNode, vnode)) {
-      // TODO: diff + 更新DOM
-      patchVNode(oldVNode, vnode);
+    if (sameVnode(oldVnode, vnode)) {
+      // diff + 更新DOM
+      patchVnode(oldVnode, vnode);
     } else {
-      removeVNodes(parentElm, oldVNode, 0, oldVNode.length - 1);
-      addVNodes(parentElm, null, vnode, 0, vnode.length - 1);
+      removeVnodes(parentElm, oldVnode, 0, oldVnode.length - 1);
+      addVnodes(parentElm, null, vnode, 0, vnode.length - 1);
     }
   }
 }
