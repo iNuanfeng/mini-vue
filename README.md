@@ -15,13 +15,13 @@ mini vue.js
 * [x] nextTick
 
 ### 正在实现
-
-### 核心待实现
 * [ ] 生命周期
-* [ ] 模板转render function
-* [ ] 指令
 * [ ] 组件嵌套
 * [ ] props
+
+### 核心待实现
+* [ ] 模板转render function
+* [ ] 指令
 * [ ] mixin
 * [ ] slot
 * [ ] css scope
