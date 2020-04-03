@@ -1,4 +1,4 @@
-import Vue from '../src/vue'
+import Vue from '../src/vue.js'
 
 let vm = new Vue({
   data: {
